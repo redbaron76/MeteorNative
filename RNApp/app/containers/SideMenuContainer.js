@@ -1,23 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
+
+import ReactNative from 'react-native';
+const { Dimensions } = ReactNative;
 
 // import SideMenu content component
 import SideMenuContent from '../components/SideMenuContent';
 
-// import dumb component to be wrapped by container
+// import SideMenu module
 const SideMenu = require('react-native-side-menu');
+
+const deviceScreen = Dimensions.get('window');
 
 // Compact way to create Container -> connect creates container by default
 
 // pass state attributes as props to Home
 // authState attr comes from combineReducers
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     return {
         menu: <SideMenuContent/>,
         menuPosition: "right",
         disableGestures: false,
-        isOpen: state.sideMenuState
+        isOpen: state.sideMenuState,
+        onChange: (isOpen) => {
+            const rootProps = props.children.props.scenes.rootProps;
+            if (isOpen) {
+                rootProps.openSideMenu();
+            } else {
+                rootProps.closeSideMenu();
+            }
+        },
+        openMenuOffset: deviceScreen.width - 50
     };
 };
 

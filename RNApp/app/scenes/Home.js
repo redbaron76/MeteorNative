@@ -48,7 +48,7 @@ class Home extends Component {
                     title={{title:props.title}}
                     statusBar={{hideAnimation:'slide', showAnimation:'slide'}}
                     leftButton={<NavbarButton {...props} role="right" text="Modal" onPress={Actions.modal}/>}
-                    rightButton={<NavbarButton {...props} role="left" icon="ios-menu" onPress={() => alert('Side Menu')}/>}
+                    rightButton={<NavbarButton {...props} role="menu"/>}
                 />
             </View>
         )

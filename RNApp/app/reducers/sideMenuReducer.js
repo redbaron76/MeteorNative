@@ -6,10 +6,10 @@ export default function sideMenuReducer(state = initialState, action = {}) {
     switch (action.type) {
 
         case SIDE_MENU_OPEN:
-            return true;
+            return action.data;
 
         case SIDE_MENU_CLOSE:
-            return false;
+            return action.data;
 
         default:
             return state;

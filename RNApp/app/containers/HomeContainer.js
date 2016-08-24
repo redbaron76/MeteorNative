@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         loginWithFacebook,
         logout
-    }, dispatch)
+    }, dispatch);
 };
 
 // this wraps the dumb component (Home is presentational)

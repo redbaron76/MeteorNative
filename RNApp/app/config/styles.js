@@ -2,5 +2,6 @@
 
 export const colors = {
     white: '#FFFFFF',
-    link: "#007AFF"
+    link: "#007AFF",
+    dark: "#CCCCCC"
 };
