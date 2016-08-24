@@ -8,6 +8,8 @@ import { Provider, connect } from 'react-redux';
 import getStoreWithMiddleware from './store';
 import scenes from './config/scenes';
 
+import SideMenu from './containers/SideMenuContainer';
+
 // Connect Meteor DDP server
 Meteor.connect(settings.METEOR_URL);
 
@@ -31,7 +33,9 @@ class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <RouterWithRedux scenes={scenes} />
+                <SideMenu>
+                    <RouterWithRedux scenes={scenes} />
+                </SideMenu>
             </Provider>
         );
     }

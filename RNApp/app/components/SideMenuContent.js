@@ -3,19 +3,19 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
-import styles from '../styles/DrawerStyle';
+import styles from '../styles/SideMenuStyle';
 
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
-const DrawerContent = (props) => {
+const SideMenuContent = (props) => {
 
     return (
         <View>
             <View>
-                <Text>Drawer Content!</Text>
+                <Text>SideMenu Content!</Text>
             </View>
         </View>
     );
 };
 
-export default DrawerContent;
+export default SideMenuContent;

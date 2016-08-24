@@ -35,7 +35,7 @@ class List extends Component {
                     <Button
                         style={{fontSize: 20, color: 'green'}}
                         styleDisabled={{color: 'red'}}
-                        onPress={Actions.drawer}>
+                        onPress={Actions.profile}>
                         Go to Profile
                     </Button>
                     <Button

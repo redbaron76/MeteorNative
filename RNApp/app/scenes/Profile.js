@@ -24,7 +24,8 @@ class Profile extends Component {
                 <NavigationBar
                     title={{title:props.title}}
                     statusBar={{hideAnimation:'slide', showAnimation:'slide'}}
-                    leftButton={<NavbarButton {...props} role="left" icon="ios-menu" onPress={() => alert('Toggle menu')}/>}
+                    leftButton={<NavbarButton {...props} role="back" icon="ios-arrow-back" text="Back"/>}
+                    rightButton={<NavbarButton {...props} role="right" icon="ios-menu" onPress={() => alert('Toggle menu')}/>}
                 />
             </View>
         )
