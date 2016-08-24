@@ -9,19 +9,22 @@ import NavbarButton from '../components/NavbarButton';
 
 import styles from '../styles/PageStyle';
 
-class List extends Component {
+class Profile extends Component {
 
     constructor(props) {
         super(props);
+
+        console.log('profile constructor', props);
     }
 
     static renderNavigationBar(props) {
+        console.log('profile', props);
         return (
             <View style={styles.navigationBarWrapper}>
                 <NavigationBar
                     title={{title:props.title}}
                     statusBar={{hideAnimation:'slide', showAnimation:'slide'}}
-                    leftButton={<NavbarButton {...props} role="back" text="Back" icon="ios-arrow-back"/>}
+                    leftButton={<NavbarButton {...props} role="left" icon="ios-menu" onPress={() => alert('Toggle menu')}/>}
                 />
             </View>
         )
@@ -30,19 +33,13 @@ class List extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.heading}>List Page</Text>
+                <Text style={styles.heading}>Profile Page</Text>
                 <View>
                     <Button
                         style={{fontSize: 20, color: 'green'}}
                         styleDisabled={{color: 'red'}}
-                        onPress={Actions.drawer}>
-                        Go to Profile
-                    </Button>
-                    <Button
-                        style={{fontSize: 20, color: 'green'}}
-                        styleDisabled={{color: 'red'}}
                         onPress={Actions.pop}>
-                        Back Home
+                        Back to List
                     </Button>
                 </View>
             </View>
@@ -50,4 +47,4 @@ class List extends Component {
     }
 }
 
-export default List;
+export default Profile;

@@ -10,6 +10,7 @@
     "react": "~15.2.1",
     "react-native": "~0.31.0",
     "react-native-button": "^1.6.0",
+    "react-native-drawer": "^2.2.6",
     "react-native-geocoder": "^0.4.4",
     "react-native-maps": "^0.7.1",
     "react-native-meteor": "^1.0.0-rc14",
