@@ -11,6 +11,7 @@ import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
 const mapStateToProps = (state) => {
     return {
         user: state.authState.user,
+        connected: state.authState.connected,
         loggingIn: state.authState.loggingIn,
     };
 };

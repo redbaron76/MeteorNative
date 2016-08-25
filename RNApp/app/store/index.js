@@ -11,5 +11,5 @@ export default function getStoreWithMiddleware() {
     // apply middleware to createStore...
     const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
     // create Redux store...
-    return createStoreWithMiddleware(reducers);
+    return createStoreWithMiddleware(reducers, window.devToolsExtension && window.devToolsExtension());
 }

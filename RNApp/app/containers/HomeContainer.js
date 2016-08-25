@@ -13,6 +13,7 @@ import Home from '../scenes/Home';
 const mapStateToProps = (state) => {
     return {
         // user: state.authState.user,
+        // connected: state.authState.connected,
         // loggingIn: state.authState.loggingIn,
     };
 };

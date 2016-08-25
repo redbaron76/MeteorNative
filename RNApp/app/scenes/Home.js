@@ -55,6 +55,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log('Home props', this.props);
         return (
             <View style={styles.container}>
                 <Text style={styles.heading}>Welcome!</Text>
