@@ -18,8 +18,6 @@ class NavbarItem extends Component {
         this.isLogged = !!this.props.user;
         this.hasIcon = !!this.props.icon;
         this.hasText = !!this.props.text;
-
-        console.log(props);
     }
 
     _renderIcon(pos) {
@@ -62,7 +60,6 @@ class NavbarItem extends Component {
     }
 
     render() {
-        console.log(this._getPressAction());
         return (
             <TouchableOpacity onPress={this._getPressAction()}>
                 <View style={styles.buttonWrapper}>

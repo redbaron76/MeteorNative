@@ -25,7 +25,7 @@ class Profile extends Component {
                     title={{title:props.title}}
                     statusBar={{hideAnimation:'slide', showAnimation:'slide'}}
                     leftButton={<NavbarButton {...props} role="back" icon="ios-arrow-back" text="Back"/>}
-                    rightButton={<NavbarButton {...props} role="right" icon="ios-menu" onPress={() => alert('Toggle menu')}/>}
+                    rightButton={<NavbarButton {...props} role="right" text="Alert" onPress={() => alert('Clicked!')}/>}
                 />
             </View>
         )
@@ -41,6 +41,12 @@ class Profile extends Component {
                         styleDisabled={{color: 'red'}}
                         onPress={Actions.pop}>
                         Back to List
+                    </Button>
+                    <Button
+                        style={{fontSize: 20, color: 'green'}}
+                        styleDisabled={{color: 'red'}}
+                        onPress={Actions.home}>
+                        Back Home
                     </Button>
                 </View>
             </View>

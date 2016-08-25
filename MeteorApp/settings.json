@@ -1,0 +1,34 @@
+{
+  "oauth": {
+    "facebook": {
+      "appId": "1142123252499209",
+      "secret": "6ea49190791af4317796e99f0e38cedd",
+      "loginStyle": "popup"
+    }
+  },
+  "public": {
+    "app": {
+      "effectDuration": 400,
+      "bootstrapTimeOut": 20000,
+      "maxRangeLimit": 50,
+      "defaultDistance": "km",
+      "distanceOnLang": false,
+      "publishTime": 3600000,
+      "defaultLang": "it",
+      "fallbackLang": "en",
+      "appLanguages": {
+        "en": "en",
+        "it": "it"
+      },
+      "images": {
+        "avatar": "80x80",
+        "picture": "375x220"
+      },
+      "timeSteps": ["in5", "in10", "in15", "in20", "in30", "in45", "in60"]
+    },
+    "upload": {
+      "basePath": "/Users/fabio/Documents/LAVORI/PROGETTI/Lastaurant.com/lastaurant/uploads",
+      "baseUrl": "http://0.0.0.0:8080"
+    }
+  }
+}

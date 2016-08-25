@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "google-libphonenumber": "^1.0.20",
     "native-base": "^0.5.4",
     "react": "~15.2.1",
     "react-native": "~0.31.0",
