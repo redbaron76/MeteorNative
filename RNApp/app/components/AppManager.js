@@ -45,6 +45,7 @@ class AppManager extends Component {
             default:
                 // Dispach first user status
                 store.dispatch(loadUser());
+                // Render the application
                 return <Provider store={store}>
                     <SideMenu>
                         <RouterWithRedux scenes={scenes}/>

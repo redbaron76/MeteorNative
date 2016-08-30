@@ -1,3 +1,3 @@
 import { Meteor } from 'meteor/meteor';
 
-import { User } from './users.js';
+import { User } from '../users.js';

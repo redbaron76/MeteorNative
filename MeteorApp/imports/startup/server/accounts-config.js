@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import { Accounts } from 'meteor/accounts-base';
 
-import { Role, Owner } from '/imports/api/users/users.js';
+import { Role, User } from '../../api/users';
 
 const settings = Meteor.settings.oauth.facebook;
 
@@ -27,18 +27,12 @@ Accounts.validateNewUser((newUser) => {
 
     if (loginWithPassword) {
 
-        const user = new Owner();
+        const user = new User();
         user.profile.name = newUser.profile.name;
-        user.profile.email = newUser.emails[0].address;
-        user.profile.location = newUser.profile.location;
-        user.profile.telephone = newUser.profile.telephone;
 
         user.validate({
             fields: [
                 'profile.name',
-                'profile.email',
-                'profile.location',
-                'profile.telephone'
             ],
             stopOnFirstError: false,
             simulation: false

@@ -1,5 +1,5 @@
 // import fixtures for faker data
-import './fixtures.js'
+import './fixtures.js'               // CREATE YOUR FIXTURES
 // import methods and publications
 import './register-api.js';
 // import Meteor.startup()

@@ -3,6 +3,8 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{MeteorNative/node_modules}" />
     <file url="file://$PROJECT_DIR$/MeteorApp" libraries="{MeteorNative/MeteorApp/node_modules}" />
+    <file url="file://$PROJECT_DIR$/MeteorApp/.meteor/local/build/programs/server" libraries="{MeteorNative/MeteorApp/.meteor/local/build/programs/server/node_modules}" />
+    <file url="file://$PROJECT_DIR$/MeteorApp/.meteor/local/build/programs/server/npm" libraries="{MeteorNative/MeteorApp/.meteor/local/build/programs/server/npm/node_modules}" />
     <file url="file://$PROJECT_DIR$/RNApp" libraries="{MeteorNative/RNApp/node_modules}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
   </component>

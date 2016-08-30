@@ -23,7 +23,7 @@ export function loadUser() {
 
         // Tracker.autorun calls to dispatch reactive datasources
         Tracker.autorun(() => {
-            console.log('dispach connection status', Meteor.status().connected);
+            //console.log('dispach connection status', Meteor.status().connected);
             dispatch({
                 type: CONNECTION_STATUS,
                 data: Meteor.status().connected,
@@ -31,7 +31,7 @@ export function loadUser() {
         });
 
         Tracker.autorun(() => {
-            console.log('dispach logginIn', Meteor.loggingIn());
+            //console.log('dispach logginIn', Meteor.loggingIn());
             dispatch({
                 type: USER_LOGGING_IN,
                 data: Meteor.loggingIn(),
@@ -39,7 +39,7 @@ export function loadUser() {
         });
 
         Tracker.autorun(() => {
-            console.log('dispach user', Meteor.user());
+            //console.log('dispach user', Meteor.user());
             dispatch({
                 type: USER_DATA,
                 data: Meteor.user(),
