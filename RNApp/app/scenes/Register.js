@@ -10,21 +10,22 @@ import styles from '../styles/PageStyle';
 
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
-const Login = (props) => {
+const Register = (props) => {
 
-    const right = {
-        icon: "ios-close",
+    const left = {
+        label: "Back",
+        icon: "ios-arrow-back",
         onPress: Actions.pop
     };
 
     return (
         <Container>
-            <Navbar role="header" title="Login" right={right} />
+            <Navbar role="header" title="Register" left={left} />
 
             <View style={styles.content}>
 
                 <View style={styles.subContainer}>
-                    <Text style={styles.heading}>Login now!</Text>
+                    <Text style={styles.heading}>Sign-up now!</Text>
                 </View>
 
                 <View style={[styles.subContainer, {justifyContent: 'flex-start'}]}>
@@ -62,7 +63,7 @@ const Login = (props) => {
                         transparent
                         style={{marginTop: 21}}
                         textStyle={{color: '#007AFF'}}
-                        onPress={ Actions.register }
+                        onPress={ Actions.profile }
                     >
                         Not a member? Create an account
                     </Button>
@@ -74,4 +75,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default Register;

@@ -56,7 +56,7 @@ class Home extends Component {
             <Container>
                 <Navbar role="header" title="Home Page" left={left} right={right} />
                 {/*<Content style={styles.content}>*/}
-                    <View style={styles.container}>
+                    <View style={styles.content}>
                         <View style={styles.subContainer}>
                             <Text style={styles.heading}>Welcome MeteorNative!</Text>
                         </View>

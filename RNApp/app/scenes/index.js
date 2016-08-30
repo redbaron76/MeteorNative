@@ -2,6 +2,7 @@
 import Home from './Home';
 import List from './List';
 import Login from './Login';
+import Register from './Register';
 import Modal from './Modal';
 import Profile from './Profile';
 
@@ -10,6 +11,7 @@ export {
     Home,
     List,
     Login,
+    Register,
     Modal,
     Profile,
 };
