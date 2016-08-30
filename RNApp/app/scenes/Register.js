@@ -28,13 +28,13 @@ const Register = (props) => {
                     <Text style={styles.heading}>Sign-up now!</Text>
                 </View>
 
-                <View style={[styles.subContainer, {justifyContent: 'flex-start'}]}>
+                <View style={[styles.subContainer, {flex: 2, justifyContent: 'flex-start'}]}>
 
                     <List style={styles.listLogin}>
                         <ListItem>
                             <InputGroup>
-                                <Icon name="ios-person" />
-                                <Input placeholder="EMAIL" />
+                                <Icon name="ios-mail" />
+                                <Input placeholder="YOUR E-MAIL" />
                             </InputGroup>
                         </ListItem>
 
@@ -45,28 +45,21 @@ const Register = (props) => {
                             </InputGroup>
                         </ListItem>
 
+                        <ListItem>
+                            <InputGroup>
+                                <Input placeholder="REPEAT PASSWORD" secureTextEntry={true} style={{paddingLeft: 27}}/>
+                            </InputGroup>
+                        </ListItem>
+
                         <Button
                             block
                             style={{marginTop: 21}}
                             onPress={ () => alert('submit') }
                         >
-                            Submit
+                            Register
                         </Button>
                     </List>
 
-                </View>
-
-                <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
-                    <Button
-                        block
-                        warning
-                        transparent
-                        style={{marginTop: 21}}
-                        textStyle={{color: '#007AFF'}}
-                        onPress={ Actions.profile }
-                    >
-                        Not a member? Create an account
-                    </Button>
                 </View>
 
             </View>
