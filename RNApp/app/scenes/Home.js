@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import { Container, Title, Content, Header, Footer, Icon, Button } from 'native-base';
+import { Container } from 'native-base';
 import Navbar from '../components/Navbar';
 
 import styles from '../styles/PageStyle';
@@ -44,10 +44,8 @@ class Home extends Component {
         console.log('Home props', this.props);
 
         const left = {
-            icon: "ios-arrow-back",
-            // iconPos: "right",
-            // label: "Back",
-            onPress: Actions.pop
+            label: "Login",
+            onPress: Actions.login
         };
 
         const right = {
@@ -56,7 +54,7 @@ class Home extends Component {
 
         return (
             <Container>
-                <Navbar role="header" title="Home Page" right={right} />
+                <Navbar role="header" title="Home Page" left={left} right={right} />
                 {/*<Content style={styles.content}>*/}
                     <View style={styles.container}>
                         <View style={styles.subContainer}>

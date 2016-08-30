@@ -25,8 +25,8 @@
           <file leaf-file-name="Home.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/RNApp/app/scenes/Home.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="792">
-                  <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+                <state relative-caret-position="989">
+                  <caret line="58" column="51" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="51" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -95,11 +95,33 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Navbar.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Navbar.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/RNApp/app/components/Navbar.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="373">
-                  <caret line="99" column="26" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
+                <state relative-caret-position="626">
+                  <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="scenes.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RNApp/app/config/scenes.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="276">
+                  <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Login.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/RNApp/app/scenes/Login.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="713">
+                  <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
                   </folding>
@@ -180,7 +202,6 @@
         <option value="$PROJECT_DIR$/RNApp/app/config/scenes.js" />
         <option value="$PROJECT_DIR$/RNApp/app/scenes/Profile.js" />
         <option value="$PROJECT_DIR$/RNApp/app/scenes/List.js" />
-        <option value="$PROJECT_DIR$/RNApp/app/scenes/Login.js" />
         <option value="$PROJECT_DIR$/RNApp/app/scenes/Modal.js" />
         <option value="$PROJECT_DIR$/RNApp/app/components/Header.js" />
         <option value="$PROJECT_DIR$/RNApp/node_modules/native-base/Components/Widgets/ListItem.js" />
@@ -193,8 +214,9 @@
         <option value="$PROJECT_DIR$/RNApp/app/config/styles.js" />
         <option value="$PROJECT_DIR$/RNApp/app/styles/PageStyle.js" />
         <option value="$PROJECT_DIR$/RNApp/app/actions/sideMenuActions.js" />
-        <option value="$PROJECT_DIR$/RNApp/app/scenes/Home.js" />
         <option value="$PROJECT_DIR$/RNApp/app/components/Navbar.js" />
+        <option value="$PROJECT_DIR$/RNApp/app/scenes/Home.js" />
+        <option value="$PROJECT_DIR$/RNApp/app/scenes/Login.js" />
       </list>
     </option>
   </component>
@@ -739,24 +761,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RNApp/app/scenes/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RNApp/node_modules/native-base/Components/Base/NativeBaseComponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="736">
           <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RNApp/app/config/scenes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -917,16 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RNApp/app/scenes/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RNApp/app/components/SideMenuContent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -953,8 +951,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RNApp/app/components/Navbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="99" column="26" selection-start-line="99" selection-start-column="26" selection-end-line="99" selection-end-column="26" />
+        <state relative-caret-position="626">
+          <caret line="110" column="33" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RNApp/app/config/scenes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RNApp/app/scenes/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="989">
+          <caret line="58" column="51" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RNApp/app/scenes/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
