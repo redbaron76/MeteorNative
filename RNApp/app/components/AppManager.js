@@ -19,6 +19,9 @@ import getStoreWithMiddleware from '../store';
 // Create a store with middleware
 const store = getStoreWithMiddleware();
 
+// TEMP
+import { View, Text } from 'react-native';
+
 // Verbose way to create Presentational components
 class AppManager extends Component {
 
@@ -35,11 +38,11 @@ class AppManager extends Component {
 
             // Not connected with the server
             case (!this.props.connected):
-                return null;
+                return <Text>Not connected to the server!</Text>;
 
             // Loggin in user
             case (this.props.loggingIn):
-                return null;
+                return <Text>Logging in...</Text>;
 
             // Connected - run router
             default:
