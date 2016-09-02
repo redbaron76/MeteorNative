@@ -74,7 +74,7 @@ export function loadUser() {
         });
 
         Tracker.autorun(() => {
-            console.log('dispach user', Meteor.user());
+            // console.log('dispach user', Meteor.user());
             dispatch({
                 type: USER_DATA,
                 data: Meteor.user(),
