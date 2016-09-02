@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 
+import { Field, reduxForm } from 'redux-form';
 import { View, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import { Container, Content, List, ListItem, InputGroup, Input, Icon, Button } from 'native-base';
+import { Container, List, Button } from 'native-base';
 import Navbar from '../components/Navbar';
+
+import { InputInlineLabel } from '../components/FormFields';
 
 import styles from '../styles/PageStyle';
 
+
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
-const Register = (props) => {
+let Register = (props) => {
 
     const left = {
         label: "Back",
@@ -31,30 +35,49 @@ const Register = (props) => {
                 <View style={[styles.subContainer, {flex: 2, justifyContent: 'flex-start'}]}>
 
                     <List style={styles.listLogin}>
-                        <ListItem>
-                            <InputGroup>
-                                <Icon name="ios-mail" />
-                                <Input placeholder="YOUR E-MAIL" />
-                            </InputGroup>
-                        </ListItem>
 
-                        <ListItem>
-                            <InputGroup>
-                                <Icon name="ios-unlock" />
-                                <Input placeholder="PASSWORD" secureTextEntry={true}/>
-                            </InputGroup>
-                        </ListItem>
+                        <Field
+                            inlineLabel
+                            name="name"
+                            placeholder="Your name"
+                            label="NAME"
+                            component={ InputInlineLabel }
+                        />
 
-                        <ListItem>
-                            <InputGroup>
-                                <Input placeholder="REPEAT PASSWORD" secureTextEntry={true} style={{paddingLeft: 27}}/>
-                            </InputGroup>
-                        </ListItem>
+                        <Field
+                            inlineLabel
+                            name="email"
+                            placeholder="your@email.com"
+                            keyboardType="email-address"
+                            label="E-MAIL"
+                            component={ InputInlineLabel }
+                        />
+
+                        <Field
+                            inlineLabel
+                            secureTextEntry
+                            name="password"
+                            type="password"
+                            label="PASSWORD"
+                            component={ InputInlineLabel }
+                        />
+
+                        <Field
+                            inlineLabel
+                            secureTextEntry
+                            name="check_password"
+                            type="password"
+                            label="CONFIRM IT"
+                            component={ InputInlineLabel }
+                        />
+
 
                         <Button
                             block
                             style={{marginTop: 21}}
-                            onPress={ () => alert('submit') }
+                            onPress={ props.handleSubmit((data) => {
+                                props.registerByEmail(data)
+                            }) }
                         >
                             Register
                         </Button>
@@ -67,5 +90,12 @@ const Register = (props) => {
         </Container>
     );
 };
+
+// Decorate Register component with reduxForm wrapper
+// Use 'let' to define the dumb component
+Register = reduxForm({
+    form: 'registerForm',
+    // validate -> validation function name to define with (values) as parameters
+})(Register);
 
 export default Register;

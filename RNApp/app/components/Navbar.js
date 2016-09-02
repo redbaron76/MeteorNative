@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Header, Button, Icon, Title } from 'native-base';
 
+import { logout } from '../actions/authActions';
 import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
 
 class Navbar extends Component {
 
     constructor(props) {
         super(props);
-
-        console.log('Navbar', props);
     }
 
     _renderTitle() {
@@ -18,35 +17,73 @@ class Navbar extends Component {
             <Title>{this.props.title}</Title> : null;
     }
 
-    _renderIcon(icon) {
-        return icon ?
-            <Icon name={icon}/> : null;
+    _renderIcon(props) {
+        switch (true) {
+            case (props.role == 'sidebar'):
+                switch (true) {
+                    case (!!this.props.user):
+                        const icon = (props.icon) ? props.icon : 'ios-menu';
+                        return <Icon name={icon}/>;
+                    default:
+                        return null;
+                }
+            case (props.role == 'login'):
+            default:
+                return null;
+        }
     }
 
-    _renderLabel(label) {
-        if (label) {
-            return label;
+    _renderLabel(props) {
+        switch (true) {
+            case (props.role == 'login'):
+                switch (true) {
+                    case (!!this.props.user):
+                        return props.logoutLabel || 'Logout';
+                    default:
+                        return props.loginLabel || 'Login';
+                }
+            case (props.label):
+                return props.label;
+            case (props.role == 'sidebar'):
+            default:
+                return null;
         }
-        return null;
+    }
+
+    _managePress(props) {
+        switch (true) {
+            case (props.role == 'login'):
+                switch (true) {
+                    case (!!this.props.user):
+                        return this.props.logout;
+                    default:
+                        return props.onPress;
+                }
+            case (props.role == 'sidebar'):
+                switch (true) {
+                    case (!!this.props.user):
+                        return this.props.openSideMenu;
+                    default:
+                        return null;
+                }
+            default:
+                return props.onPress;
+        }
     }
 
     _renderLeftButton() {
-        if (
-            this.props.left &&
-            typeof this.props.left === 'object' &&
-            this.checkUserLogged('left')
-        ) {
-            const left = this.props.left;
+        const left = this.props.left;
+        if (left && typeof left === 'object') {
             return (
                 <Button
                     transparent
-                    btnLeft={!!this.props.left}
+                    btnLeft={!!left}
                     iconLeft={left.iconPos == 'left'}
                     iconRight={left.iconPos == 'right'}
-                    onPress={this._managePress('left')}
+                    onPress={this._managePress(left)}
                 >
-                    {this._renderIcon(left.icon)}
-                    {this._renderLabel(left.label)}
+                    {this._renderIcon(left)}
+                    {this._renderLabel(left)}
                 </Button>
             );
         }
@@ -54,40 +91,27 @@ class Navbar extends Component {
     }
 
     _renderRightButton() {
-        if (
-            this.props.right &&
-            typeof this.props.right === 'object' &&
-            this.checkUserLogged('right')
-        ) {
-            const right = this.props.right;
+        const right = this.props.right;
+        if (right && typeof right === 'object') {
             return (
                 <Button
                     transparent
-                    btnRight={!!this.props.right}
+                    btnRight={!!right}
                     iconLeft={right.iconPos == 'left'}
                     iconRight={right.iconPos == 'right'}
-                    onPress={this._managePress('right')}
+                    onPress={this._managePress(right)}
                 >
-                    {this._renderLabel(right.label)}
-                    {this._renderIcon(right.icon)}
+                    {this._renderLabel(right)}
+                    {this._renderIcon(right)}
                 </Button>
             );
+
         }
         return null;
     }
 
-    _managePress(pos) {
-        if (
-            // !!this.props.user &&
-            !!!this.props[pos].onPress &&
-            this.props[pos].icon == 'ios-menu'
-        ) {
-            return this.props.openSideMenu;
-        }
-        return this.props[pos].onPress;
-    }
-
     render() {
+        // console.log('Navbar', this.props);
         return (
             <Header>
                 {this._renderLeftButton()}
@@ -95,14 +119,6 @@ class Navbar extends Component {
                 {this._renderRightButton()}
             </Header>
         );
-    }
-
-    checkUserLogged(pos) {
-        const hasMenu = this.props[pos].icon == 'ios-menu';
-        if (hasMenu) {
-            return hasMenu && !!this.props.user;
-        }
-        return true;
     }
 
 }
@@ -114,12 +130,14 @@ Navbar.propTypes = {
         iconPos: React.PropTypes.string,
         label: React.PropTypes.string,
         onPress:React.PropTypes.func,
+        role:React.PropTypes.oneOf(['login', 'sidebar']),
     }),
     right:React.PropTypes.shape({
         icon: React.PropTypes.string,
         iconPos: React.PropTypes.string,
         label: React.PropTypes.string,
         onPress:React.PropTypes.func,
+        role:React.PropTypes.oneOf(['login', 'sidebar']),
     })
 };
 
@@ -133,6 +151,7 @@ const mapStateToProps = (state, props) => {
 // pass Event handlers to Navbar
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
+        logout,
         openSideMenu,
         closeSideMenu,
     }, dispatch);

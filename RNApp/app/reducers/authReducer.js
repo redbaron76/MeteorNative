@@ -17,6 +17,7 @@ export default function authReducer(state = initialState, action = {}) {
 
     // switch by type
     switch (type) {
+
         case CONNECTION_STATUS:
             // state remains immutable
             return Object.assign(state, {

@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
+import { Field, reduxForm } from 'redux-form';
 import { View, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import { Container, Content, List, ListItem, InputGroup, Input, Icon, Button } from 'native-base';
+import { Container, List, Button } from 'native-base';
 import Navbar from '../components/Navbar';
+
+import { InputIconLabel } from '../components/FormFields';
 
 import styles from '../styles/PageStyle';
 
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
-const Login = (props) => {
+let Login = (props) => {
+
+    // console.log('Login', props);
 
     const right = {
         icon: "ios-close",
@@ -30,24 +35,27 @@ const Login = (props) => {
                 <View style={[styles.subContainer, {justifyContent: 'flex-start'}]}>
 
                     <List style={styles.listLogin}>
-                        <ListItem>
-                            <InputGroup>
-                                <Icon name="ios-person" />
-                                <Input placeholder="EMAIL" />
-                            </InputGroup>
-                        </ListItem>
+                        <Field
+                            name="email"
+                            placeholder="E-MAIL"
+                            iconName="ios-person"
+                            component={ InputIconLabel }
+                        />
 
-                        <ListItem>
-                            <InputGroup>
-                                <Icon name="ios-unlock" />
-                                <Input placeholder="PASSWORD" secureTextEntry={true}/>
-                            </InputGroup>
-                        </ListItem>
+                        <Field
+                            name="password"
+                            placeholder="PASSWORD"
+                            iconName="ios-unlock"
+                            secureTextEntry={true}
+                            component={ InputIconLabel }
+                        />
 
                         <Button
                             block
                             style={{marginTop: 21}}
-                            onPress={ () => alert('submit') }
+                            onPress={ props.handleSubmit((data) => {
+                                props.loginWithEmail(data)
+                            }) }
                         >
                             Submit
                         </Button>
@@ -73,5 +81,10 @@ const Login = (props) => {
         </Container>
     );
 };
+
+Login = reduxForm({
+    form: 'loginForm',
+    // validate -> validation function name to define with (values) as parameters
+})(Login);
 
 export default Login;

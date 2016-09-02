@@ -25,11 +25,10 @@ const mapStateToProps = (state, props) => {
         disableGestures: false,
         isOpen: state.sideMenuState,
         onChange: (isOpen) => {
-            const rootProps = props.children.props.scenes.rootProps;
             if (isOpen) {
-                rootProps.openSideMenu();
+                props.onOpen();
             } else {
-                rootProps.closeSideMenu();
+                props.onClose();
             }
         },
         openMenuOffset: deviceScreen.width - 50

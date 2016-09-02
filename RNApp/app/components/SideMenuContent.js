@@ -12,7 +12,7 @@ import styles from '../styles/SideMenuStyle';
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
 const SideMenuContent = (props) => {
-    console.log('SideMenuContent:', props);
+    // console.log('SideMenuContent:', props);
     return (!!props.user) ? <View style={styles.container}>
         <Text>SideMenu Content!</Text>
     </View> : null;

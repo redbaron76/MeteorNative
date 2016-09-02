@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
-// Import SideMenu container
-import SideMenu from '../containers/SideMenuContainer';
-
 // Import scenes for the router
 import scenes from '../config/scenes';
 
@@ -50,9 +47,7 @@ class AppManager extends Component {
                 store.dispatch(loadUser());
                 // Render the application
                 return <Provider store={store}>
-                    <SideMenu>
-                        <RouterWithRedux scenes={scenes}/>
-                    </SideMenu>
+                    <RouterWithRedux scenes={scenes}/>
                 </Provider>;
         }
     }

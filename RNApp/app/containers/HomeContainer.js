@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 
 // import actions from authReducer to pass as props to component
 import { loginWithFacebook, logout } from '../actions/authActions';
+// import actions from sideMenuReducer
+import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
 // import dumb component to be wrapped by container
 import Home from '../scenes/Home';
 
@@ -22,7 +24,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         loginWithFacebook,
-        logout
+        logout,
+        openSideMenu,
+        closeSideMenu,
     }, dispatch);
 };
 

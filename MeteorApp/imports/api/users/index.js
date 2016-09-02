@@ -103,9 +103,12 @@ export const User = Class.create({
         },
         profile: {
             type: UserProfile,
-            default: function() {
+            validators: [{
+                type: 'object'
+            }]
+            /*default: function() {
                 return {};
-            }
+            }*/
         }
     },
     methods: {

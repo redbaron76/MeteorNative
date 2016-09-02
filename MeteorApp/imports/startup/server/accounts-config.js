@@ -27,15 +27,17 @@ Accounts.validateNewUser((newUser) => {
 
     if (loginWithPassword) {
 
+        console.log('newUser', newUser);
+
         const user = new User();
-        user.profile.name = newUser.profile.name;
 
         user.validate({
             fields: [
-                'profile.name',
+                'name',
+                'email'
             ],
             stopOnFirstError: false,
-            simulation: false
+            simulation: false           // simulate on the client
         }, (error) => {
             if (error && error.reason) {
                 throw new Meteor.Error(403, error.reason);
@@ -49,11 +51,13 @@ Accounts.validateNewUser((newUser) => {
 
 
 Accounts.onCreateUser((options, user) => {
-    console.log('options', options, 'user', user);
+    // console.log('options', options, 'user', user);
+
+    // create profile obj
+    const profile = {};
 
     if (user.services.facebook) {
         // Login Users
-        const profile = {};
         profile.id = user.services.facebook.id;
         profile.name = user.services.facebook.name;
         profile.link = user.services.facebook.link;
@@ -64,13 +68,15 @@ Accounts.onCreateUser((options, user) => {
         profile.picture = `http://graph.facebook.com/${profile.id}/picture`;
         profile.role = Role.USER;
 
-        // assign profile to user.profile
-        user.profile = profile;
-
     } else {
         // Login Owners
-        user.profile = options.profile;
+        profile.name = options.name;
     }
+
+    // assign profile to user.profile
+    user.profile = profile;
+
+    // console.log('USER: ', user);
 
     return user;
 });
