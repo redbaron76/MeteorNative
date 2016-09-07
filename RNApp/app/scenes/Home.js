@@ -17,6 +17,18 @@ class Home extends Component {
         super(props);
     }
 
+    _renderDummyLogin() {
+        if (!this.props.user) {
+            return (
+                <Text
+                    style={[styles.text, {marginTop: 10, padding: 4, backgroundColor: '#000000'}]}
+                >
+                    Login with: test / test
+                </Text>
+            );
+        }
+    }
+
     render() {
         // console.log('Home', this.props);
 
@@ -41,7 +53,7 @@ class Home extends Component {
                     </View>
                     <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
                         <Text style={[styles.text, {backgroundColor: '#b3b3b3', padding: 5}]}>This is a boilerplate that aims to integrate together Meteor as backend, React Native as frontend and Redux for managing state.</Text>
-                        <Text style={[styles.text, {marginTop: 10, padding: 4, backgroundColor: '#000000'}]}>Login with: test / test</Text>
+                        {this._renderDummyLogin()}
                     </View>
                 </View>
             </ContainerWithMenu>
