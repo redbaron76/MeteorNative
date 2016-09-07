@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "google-libphonenumber": "^1.0.20",
-    "native-base": "file:///Users/fabio/Documents/LAVORI/PROGETTI/NativeBase/native-base-0.5.6-rc1.tgz",
+    "native-base": "git://github.com/redbaron76/NativeBase/#master",
     "react": "~15.2.1",
     "react-native": "~0.31.0",
     "react-native-device-info": "^0.9.5",

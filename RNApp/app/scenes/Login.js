@@ -80,7 +80,6 @@ class Login extends Component {
                     <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
                         <Button
                             block
-                            warning
                             transparent
                             style={{marginTop: 21}}
                             textStyle={{color: '#007AFF'}}

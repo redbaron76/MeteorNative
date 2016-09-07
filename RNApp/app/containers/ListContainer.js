@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 // import dumb component to be wrapped by container
-import List from '../scenes/List';
+import ListPage from '../scenes/List';
 
 // Compact way to create Container -> connect creates container by default
 
@@ -22,4 +22,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 // this wraps the dumb component (Home is presentational)
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(ListPage);

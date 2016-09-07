@@ -35,8 +35,11 @@ class Navbar extends Component {
                         return null;
                 }
             case (props.role == 'close'):
-                const icon = (props.icon) ? props.icon : 'ios-close';
-                return <Icon name={icon}/>;
+                const iconClose = (props.icon) ? props.icon : 'ios-close';
+                return <Icon name={iconClose}/>;
+            case (props.role == 'back'):
+                const iconBack = (props.icon) ? props.icon : 'ios-arrow-back';
+                return <Icon name={iconBack}/>;
             case (!!props.icon):
                 return <Icon name={props.icon}/>;
             default:
@@ -53,6 +56,8 @@ class Navbar extends Component {
                     default:
                         return props.loginLabel || 'Login';
                 }
+            case (props.role == 'back'):
+                return props.label || 'Back';
             case (!!props.label):
                 return props.label;
             default:
@@ -76,6 +81,8 @@ class Navbar extends Component {
                     default:
                         return null;
                 }
+            case (props.role == 'back'):
+                return props.onPress || Actions.pop;
             case (props.role == 'close'):
                 return props.onPress || Actions.pop;
             default:

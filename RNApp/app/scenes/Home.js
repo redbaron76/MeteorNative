@@ -7,7 +7,8 @@ import {
     View,
     Text,
     ContainerWithMenu,
-    Navbar
+    Navbar,
+    Button,
 } from '../components';
 
 // Verbose way to create Presentational components
@@ -15,6 +16,13 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    _renderHelloMessage() {
+        const message = (this.props.user) ? ", " + this.props.user.username : null;
+        return (
+            <Text style={styles.heading}>Welcome to MeteorNative{message}!</Text>
+        );
     }
 
     _renderDummyLogin() {
@@ -25,6 +33,22 @@ class Home extends Component {
                 >
                     Login with: test / test
                 </Text>
+            );
+        }
+    }
+
+    _renderLinkToList() {
+        if (this.props.user) {
+            return (
+                <Button
+                    block
+                    transparent
+                    style={undefined}
+                    textStyle={{color: '#007AFF'}}
+                    onPress={ Actions.list }
+                >
+                    Show device infos
+                </Button>
             );
         }
     }
@@ -46,11 +70,9 @@ class Home extends Component {
                 <Navbar role="header" title="Home Page" left={left} right={right} />
                 <View style={styles.content}>
                     <View style={styles.subContainer}>
-                        <Text style={styles.heading}>Welcome to MeteorNative!</Text>
+                        {this._renderHelloMessage()}
                     </View>
-                    <View style={styles.subContainer}>
-                        <Text style={styles.heading}>{this.props.user && this.props.user.username}</Text>
-                    </View>
+                    {this._renderLinkToList()}
                     <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
                         <Text style={[styles.text, {backgroundColor: '#b3b3b3', padding: 5}]}>This is a boilerplate that aims to integrate together Meteor as backend, React Native as frontend and Redux for managing state.</Text>
                         {this._renderDummyLogin()}

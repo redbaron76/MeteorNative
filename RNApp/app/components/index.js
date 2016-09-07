@@ -2,7 +2,7 @@
 
 import {
     View,
-    Text,
+    // Text,
     StyleSheet,
 } from 'react-native';
 
@@ -22,7 +22,7 @@ import {
     ListItem,
     ProgressBar,
     Spinner,
-    Text as BaseText,
+    Text,
     Thumbnail,
     Title,
 } from 'native-base';
@@ -44,7 +44,7 @@ export {
     // react-native
 
     View,
-    Text,
+    // Text,
     StyleSheet,
 
     // native-base component
@@ -64,7 +64,7 @@ export {
     ListItem,
     ProgressBar,
     Spinner,
-    BaseText,
+    Text,
     Thumbnail,
     Title,
 

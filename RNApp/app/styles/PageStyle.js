@@ -41,5 +41,10 @@ export default styles = StyleSheet.create({
     },
     link: {
         color: colors.link
+    },
+    note: {
+        color: colors.link,
+        fontSize: 15,
+        fontWeight: '400',
     }
 });
