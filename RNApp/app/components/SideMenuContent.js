@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text } from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
+import { View, Text } from './';
+
 import { loginWithFacebook, logout } from '../actions/authActions';
 import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
 

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
-import { Actions } from 'react-native-router-flux';
-import { StyleSheet, View, Text } from 'react-native';
-
-
 import styles from '../styles/PageStyle';
+
+import {
+    View,
+    Text,
+    ContainerWithMenu,
+    Navbar
+} from '../components';
 
 class List extends Component {
 
@@ -12,15 +15,25 @@ class List extends Component {
         super(props);
     }
 
-
     render() {
-        return (
-            <View style={styles.container}>
-                <Text style={styles.heading}>List Page</Text>
-                <View>
 
+        const left = {
+            role: "back",
+        };
+
+        const right = {
+            role: "sidebar",
+        };
+
+        return (
+            <ContainerWithMenu>
+                <Navbar role="header" title="Home Page" left={left} right={right} />
+                <View style={styles.content}>
+                    <View style={styles.subContainer}>
+                        <Text style={styles.heading}>List Page</Text>
+                    </View>
                 </View>
-            </View>
+            </ContainerWithMenu>
         );
     }
 }

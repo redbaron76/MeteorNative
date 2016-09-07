@@ -27,15 +27,15 @@ Accounts.validateNewUser((newUser) => {
 
     if (loginWithPassword) {
 
-        console.log('newUser', newUser);
+        // console.log('newUser', newUser);
 
         const user = new User();
 
+        user.username = newUser.username;
+        user.emails = newUser.emails[0];
+
         user.validate({
-            fields: [
-                'name',
-                'email'
-            ],
+            fields: ['username', 'emails'],
             stopOnFirstError: false,
             simulation: false           // simulate on the client
         }, (error) => {
@@ -70,7 +70,9 @@ Accounts.onCreateUser((options, user) => {
 
     } else {
         // Login Owners
-        profile.name = options.name;
+        profile.name = options.username;
+        profile.email = options.email;
+        profile.role = Role.USER; // or OWNER
     }
 
     // assign profile to user.profile

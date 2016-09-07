@@ -14,9 +14,7 @@ import Home from '../scenes/Home';
 // authState attr comes from combineReducers
 const mapStateToProps = (state) => {
     return {
-        // user: state.authState.user,
-        // connected: state.authState.connected,
-        // loggingIn: state.authState.loggingIn,
+        user: state.authState.user,
     };
 };
 

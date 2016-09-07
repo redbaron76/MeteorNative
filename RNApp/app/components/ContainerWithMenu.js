@@ -7,7 +7,7 @@ import { loginWithFacebook, logout } from '../actions/authActions';
 // import actions from sideMenuReducer
 import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
 
-import { Container } from 'native-base';
+import { Container } from './';
 import SideMenu from '../containers/SideMenuContainer';
 
 class ContainerWithMenu extends Component {

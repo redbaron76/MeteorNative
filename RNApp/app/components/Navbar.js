@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Header, Button, Icon, Title } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+
+import {
+    Header,
+    Button,
+    Icon,
+    Title,
+} from './';
 
 import { logout } from '../actions/authActions';
 import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
@@ -27,7 +34,11 @@ class Navbar extends Component {
                     default:
                         return null;
                 }
-            case (props.role == 'login'):
+            case (props.role == 'close'):
+                const icon = (props.icon) ? props.icon : 'ios-close';
+                return <Icon name={icon}/>;
+            case (!!props.icon):
+                return <Icon name={props.icon}/>;
             default:
                 return null;
         }
@@ -42,9 +53,8 @@ class Navbar extends Component {
                     default:
                         return props.loginLabel || 'Login';
                 }
-            case (props.label):
+            case (!!props.label):
                 return props.label;
-            case (props.role == 'sidebar'):
             default:
                 return null;
         }
@@ -66,6 +76,8 @@ class Navbar extends Component {
                     default:
                         return null;
                 }
+            case (props.role == 'close'):
+                return props.onPress || Actions.pop;
             default:
                 return props.onPress;
         }
@@ -111,7 +123,7 @@ class Navbar extends Component {
     }
 
     render() {
-        // console.log('Navbar', this.props);
+        //console.log('Navbar', this.props);
         return (
             <Header>
                 {this._renderLeftButton()}
@@ -130,14 +142,14 @@ Navbar.propTypes = {
         iconPos: React.PropTypes.string,
         label: React.PropTypes.string,
         onPress:React.PropTypes.func,
-        role:React.PropTypes.oneOf(['login', 'sidebar']),
+        role:React.PropTypes.oneOf(['back', 'close', 'login', 'sidebar']),
     }),
     right:React.PropTypes.shape({
         icon: React.PropTypes.string,
         iconPos: React.PropTypes.string,
         label: React.PropTypes.string,
         onPress:React.PropTypes.func,
-        role:React.PropTypes.oneOf(['login', 'sidebar']),
+        role:React.PropTypes.oneOf(['back', 'close', 'login', 'sidebar']),
     })
 };
 

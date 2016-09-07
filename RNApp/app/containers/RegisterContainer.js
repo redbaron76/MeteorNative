@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { registerByEmail } from '../actions/authActions';
 
 // import dumb component to be wrapped by container
-import Register from '../scenes/Register';
+import RegisterForm from '../scenes/Register';
 
 // Compact way to create Container -> connect creates container by default
 
@@ -13,7 +13,7 @@ import Register from '../scenes/Register';
 // authState attr comes from combineReducers
 const mapStateToProps = (state) => {
     return {
-
+        responseSubmit: state.validateState.error,
     };
 };
 
@@ -25,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 // this wraps the dumb component (Home is presentational)
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

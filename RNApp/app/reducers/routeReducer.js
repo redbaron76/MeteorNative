@@ -5,13 +5,17 @@ const initialState = {
 };
 
 export default function routeReducer(state = initialState, action = {}) {
-    switch (action.type) {
+
+    // get action data
+    const { scene, type } = action;
+
+    switch (type) {
         // focus action is dispatched when a new screen comes into focus
-        case ActionConst.FOCUS:
+        /*case ActionConst.FOCUS:
             return {
                 ...state,
-                scene: action.scene,
-            };
+                scene: scene,
+            };*/
 
         // ...other actions
 

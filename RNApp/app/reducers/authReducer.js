@@ -5,9 +5,9 @@ import {
 } from '../constants/actionTypes';
 
 const initialState = {
-    user: null,
-    connected: false,
-    loggingIn: false,
+    user: undefined,
+    // connected: false,
+    // loggingIn: false,
 };
 
 export default function authReducer(state = initialState, action = {}) {
@@ -18,17 +18,17 @@ export default function authReducer(state = initialState, action = {}) {
     // switch by type
     switch (type) {
 
-        case CONNECTION_STATUS:
+        /*case CONNECTION_STATUS:
             // state remains immutable
             return Object.assign(state, {
                 connected: data,
-            });
+            });*/
 
-        case USER_LOGGING_IN:
+        /*case USER_LOGGING_IN:
             // state remains immutable
             return Object.assign(state, {
                 loggingIn: data,
-            });
+            });*/
 
         case USER_DATA:
             // return new object appended to current state

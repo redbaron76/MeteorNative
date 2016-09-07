@@ -20,10 +20,7 @@ if (inDevelopment()) {
         const userId = Accounts.createUser({
             email: 'test@test.com',
             username: 'test',
-            password: 'test',
-            profile: {
-                name: 'Test User',
-            }
+            password: 'test'
         });
 
         console.log('User created: ', userId);

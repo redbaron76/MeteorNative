@@ -60,16 +60,28 @@ const Device = Class.create({
     }
 });
 
+const Email = Class.create({
+    name: 'Email',
+    fields: {
+        address: {
+            type: String,
+            validators: [{
+                type: 'email',
+                message: 'E-mail address is not valid'
+            }]
+        },
+        verified: {
+            type: Boolean
+        }
+    }
+});
+
 export const UserProfile = Class.create({
     name: 'UserProfile',
     fields: {
         name: {
             type: String,
-            validators: [{
-                type: 'minLength',
-                param: 1,
-                message: 'name_must_set'
-            }]
+            default: ''
         },
         avatar: {
             type: String,
@@ -96,10 +108,15 @@ export const User = Class.create({
             default: new Date()
         },
         emails: {
-            type: [Object],
-            default: function() {
-                return [];
-            }
+            type: Email
+        },
+        username: {
+            type: String,
+            validators: [{
+                type: 'minLength',
+                param: 2,
+                message: 'Username must be at least 2 chars long'
+            }]
         },
         profile: {
             type: UserProfile,

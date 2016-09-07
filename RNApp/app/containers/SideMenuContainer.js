@@ -7,7 +7,7 @@ import ReactNative from 'react-native';
 const { Dimensions } = ReactNative;
 
 // import SideMenu content component
-import SideMenuContent from '../components/SideMenuContent';
+import { SideMenuContent } from '../components';
 
 // import SideMenu module
 const SideMenu = require('react-native-side-menu');

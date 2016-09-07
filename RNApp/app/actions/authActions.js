@@ -1,44 +1,89 @@
 // Actions for user auth
 
 import Meteor, { Tracker, Accounts } from 'react-native-meteor';
-import { Actions } from 'react-native-router-flux';
+import { Actions, ActionConst } from 'react-native-router-flux';
 import { autofill } from 'redux-form';
 
 import {
-    CONNECTION_STATUS,
-    USER_LOGGING_IN,
     USER_DATA,
+    ERROR_LOGIN,
 } from '../constants/actionTypes';
+
+
+export const errorLogin = (msg, changeColor = true) => {
+    return {
+        type: ERROR_LOGIN,
+        data: {
+            msg: msg,
+            color: (msg && changeColor) ? 'danger' : 'primary'
+        }
+    };
+};
+
+export const userData = (obj) => {
+    return {
+        type: USER_DATA,
+        data: obj,
+    };
+};
 
 // Action - register by email
 export function registerByEmail(formData) {
     return dispatch => {
-        // console.log('registerByEmail data', formData);
-        const {name, email, password} = formData;
-        Accounts.createUser({
-            name,
-            email,
-            password,
+        const {username, email, password, checkPassword} = formData;
 
-        }, (error) => {
-            if (error) {
-                console.log('createUser callback error', error);
-            } else {
-                // pre-populate email field in loginForm
-                dispatch(autofill('loginForm', 'email', email));
-                Actions.pop();
-            }
-        });
+        switch (true) {
+            case (!username || !email || !password || !checkPassword):
+                dispatch(errorLogin('Fill all requested fields!'));
+                return;
+            case (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)):
+                dispatch(errorLogin('E-mail address not valid!'));
+                return;
+            case (password.length < 8):
+                dispatch(errorLogin('Password must be 8 chars long at least!'));
+                return;
+            case(password !== checkPassword):
+                dispatch(errorLogin('Check password confirmation!'));
+                return;
+            default:
+                dispatch(errorLogin('Creating account...'));
+                Accounts.createUser({
+                    username,
+                    email,
+                    password,
+                }, (error) => {
+                    if (error) {
+                        console.log(error);
+                        dispatch(errorLogin(error.reason));
+                    } else {
+                        // pre-populate email field in loginForm
+                        dispatch(autofill('loginForm', 'email', email));
+                        dispatch(errorLogin(undefined));
+                        Actions.pop();
+                    }
+                });
+        }
     }
 }
 
-// Action - login with Facebook
+// Action - login with Email
 export function loginWithEmail(formData) {
     return dispatch => {
         const { email, password } = formData;
-        Meteor.loginWithPassword(email, password, (error) => {
-            console.log('Login error:', error);
-        });
+        if (email && password) {
+            dispatch(errorLogin('Loading...', false));
+            Meteor.loginWithPassword(email, password, (error) => {
+                if (error) {
+                    dispatch(errorLogin(error.reason));
+                } else {
+                    dispatch(errorLogin(undefined));
+                    dispatch(userData(Meteor.user()));
+                    Actions.home({type: ActionConst.REPLACE});
+                }
+            });
+        } else {
+            dispatch(errorLogin('Fill with requested credentials!'));
+        }
     }
 }
 
@@ -51,38 +96,6 @@ export function loginWithFacebook() {
     }
 }
 
-// Action - load the Meteor User
-export function loadUser() {
-    // use thunk - no () because only one argument (dispatch, getState)
-    return dispatch => {
-
-        // Tracker.autorun calls to dispatch reactive datasources
-        Tracker.autorun(() => {
-            // console.log('dispach connection status', Meteor.status().connected);
-            dispatch({
-                type: CONNECTION_STATUS,
-                data: Meteor.status().connected,
-            });
-        });
-
-        Tracker.autorun(() => {
-            // console.log('dispach logginIn', Meteor.loggingIn());
-            dispatch({
-                type: USER_LOGGING_IN,
-                data: Meteor.loggingIn(),
-            });
-        });
-
-        Tracker.autorun(() => {
-            // console.log('dispach user', Meteor.user());
-            dispatch({
-                type: USER_DATA,
-                data: Meteor.user(),
-            });
-        });
-    }
-}
-
 // Action - logout user from Meteor app
 export function logout() {
     return dispatch => {
@@ -90,12 +103,8 @@ export function logout() {
             if (error) {
                 console.log('Error logout:', error);
             } else {
-                console.log('Logged out!');
                 // Dispatch new user status after logout
-                /*dispatch({
-                    type: USER_DATA,
-                    data: Meteor.user(),
-                });*/
+                dispatch(userData(null))
             }
         });
     };

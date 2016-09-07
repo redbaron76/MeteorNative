@@ -3,8 +3,6 @@ import Home from './Home';
 import List from './List';
 import Login from './Login';
 import Register from './Register';
-import Modal from './Modal';
-import Profile from './Profile';
 
 // export as single object
 export {
@@ -12,6 +10,4 @@ export {
     List,
     Login,
     Register,
-    Modal,
-    Profile,
 };

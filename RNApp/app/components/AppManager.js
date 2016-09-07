@@ -7,17 +7,16 @@ import scenes from '../config/scenes';
 // Import Router wrapped by Redux connect
 import RouterWithRedux from '../config/router';
 
-// Import action to dispach authActions
-import { loadUser } from '../actions/authActions';
-
 // Import store with middleware
 import getStoreWithMiddleware from '../store';
 
 // Create a store with middleware
 const store = getStoreWithMiddleware();
 
-// TEMP
-import { View, Text } from 'react-native';
+import { userData } from '../actions/authActions';
+
+// @todo: build Views for loading/not connected
+import { View, Text } from './';
 
 // Verbose way to create Presentational components
 class AppManager extends Component {
@@ -28,8 +27,9 @@ class AppManager extends Component {
 
     render() {
 
-        // Dispach first user status
-        // store.dispatch(loadUser());
+        // dispatch userData to authState
+        // using store as MiniMongo
+        store.dispatch(userData(this.props.user));
 
         switch (true) {
 
@@ -37,20 +37,15 @@ class AppManager extends Component {
             case (!this.props.connected):
                 return <Text>Not connected to the server!</Text>;
 
-            // Loggin in user
-            case (this.props.loggingIn):
-                return <Text>Logging in...</Text>;
-
             // Connected - run router
             default:
-                // Dispach first user status
-                store.dispatch(loadUser());
                 // Render the application
                 return <Provider store={store}>
                     <RouterWithRedux scenes={scenes}/>
                 </Provider>;
         }
     }
+
 }
 
 export default AppManager;

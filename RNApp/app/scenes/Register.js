@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
-import { Field, reduxForm } from 'redux-form';
-import { View, Text, StyleSheet } from 'react-native';
+import { reduxForm } from 'redux-form';
 import { Actions } from 'react-native-router-flux';
 
-import { Container, List, Button } from 'native-base';
-import Navbar from '../components/Navbar';
-
-import { InputInlineLabel } from '../components/FormFields';
-
+import { errorMessage, errorColor } from '../utils';
 import styles from '../styles/PageStyle';
 
+import {
+    Container,
+    List,
+    Button,
+    Field,
+    InputInlineLabel,
+    Navbar,
+    View,
+    Text,
+} from '../components';
 
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
@@ -38,48 +43,49 @@ let Register = (props) => {
 
                         <Field
                             inlineLabel
-                            name="name"
-                            placeholder="Your name"
-                            label="NAME"
+                            name="username"
+                            placeholder="Username"
+                            label="USERNAME"
                             component={ InputInlineLabel }
                         />
 
                         <Field
                             inlineLabel
                             name="email"
+                            label="E-MAIL"
                             placeholder="your@email.com"
                             keyboardType="email-address"
-                            label="E-MAIL"
+                            autoCapitalize="none"
+                            autoCorrect={false}
                             component={ InputInlineLabel }
                         />
 
                         <Field
                             inlineLabel
-                            secureTextEntry
                             name="password"
                             type="password"
                             label="PASSWORD"
+                            secureTextEntry={true}
                             component={ InputInlineLabel }
                         />
 
                         <Field
                             inlineLabel
-                            secureTextEntry
-                            name="check_password"
+                            name="checkPassword"
                             type="password"
                             label="CONFIRM IT"
+                            secureTextEntry={true}
                             component={ InputInlineLabel }
                         />
-
 
                         <Button
                             block
                             style={{marginTop: 21}}
-                            onPress={ props.handleSubmit((data) => {
-                                props.registerByEmail(data)
-                            }) }
+                            primary={errorColor(props.responseSubmit, 'primary')}
+                            danger={errorColor(props.responseSubmit, 'danger')}
+                            onPress={props.handleSubmit(props.registerByEmail)}
                         >
-                            Register
+                            {errorMessage(props.responseSubmit, "Register")}
                         </Button>
                     </List>
 
@@ -93,9 +99,9 @@ let Register = (props) => {
 
 // Decorate Register component with reduxForm wrapper
 // Use 'let' to define the dumb component
-Register = reduxForm({
+const RegisterForm = reduxForm({
     form: 'registerForm',
     // validate -> validation function name to define with (values) as parameters
 })(Register);
 
-export default Register;
+export default RegisterForm;

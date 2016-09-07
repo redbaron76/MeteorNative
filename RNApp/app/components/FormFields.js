@@ -1,17 +1,23 @@
 import React from 'react';
-import { Icon, Input, InputGroup, ListItem } from 'native-base';
+import { resetError } from '../utils';
+import {
+    Icon,
+    Input,
+    InputGroup,
+    ListItem,
+    Text
+} from './';
 
 // Export Form components
 
 export const InputInlineLabel = ({ input, meta, ...props }) => {
-    // console.log('InputInlineLabel', props);
+    resetError(meta, input);
     return (
         <ListItem>
             <InputGroup>
                 <Input
                     {...props}
                     {...input}
-                    errorText={ meta.touched && meta.error }
                 />
             </InputGroup>
         </ListItem>
@@ -19,7 +25,7 @@ export const InputInlineLabel = ({ input, meta, ...props }) => {
 };
 
 export const InputIconLabel = ({ input, meta, ...props }) => {
-    // console.log('InputIconLabel', props);
+    resetError(meta, input);
     const { iconName } = props;
     return (
         <ListItem>
@@ -28,7 +34,6 @@ export const InputIconLabel = ({ input, meta, ...props }) => {
                 <Input
                     {...props}
                     {...input}
-                    errorText={ meta.touched && meta.error }
                 />
             </InputGroup>
         </ListItem>

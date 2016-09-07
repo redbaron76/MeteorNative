@@ -1,90 +1,113 @@
 import React, { Component } from 'react';
 
-import { Field, reduxForm } from 'redux-form';
-import { View, Text, StyleSheet } from 'react-native';
+import { reduxForm } from 'redux-form';
 import { Actions } from 'react-native-router-flux';
 
-import { Container, List, Button } from 'native-base';
-import Navbar from '../components/Navbar';
-
-import { InputIconLabel } from '../components/FormFields';
-
+import { errorMessage, errorColor } from '../utils';
 import styles from '../styles/PageStyle';
+
+import {
+    Container,
+    List,
+    Button,
+    Field,
+    InputIconLabel,
+    Navbar,
+    View,
+    Text,
+} from '../components';
 
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
-let Login = (props) => {
+class Login extends Component {
 
-    // console.log('Login', props);
+    constructor(props) {
+        super(props);
+        //console.log('Login', props);
+    }
 
-    const right = {
-        icon: "ios-close",
-        onPress: Actions.pop
-    };
+    render() {
 
-    return (
-        <Container>
-            <Navbar role="header" title="Login" right={right} />
+        const right = {
+            role: 'close',
+            // onPress: Actions.pop
+        };
 
-            <View style={styles.content}>
+        return (
+            <Container>
+                <Navbar role="header" title="Login" right={right} />
 
-                <View style={styles.subContainer}>
-                    <Text style={styles.heading}>Login now!</Text>
-                </View>
+                <View style={styles.content}>
 
-                <View style={[styles.subContainer, {justifyContent: 'flex-start'}]}>
+                    <View style={styles.subContainer}>
+                        <Text style={styles.heading}>Login now!</Text>
+                    </View>
 
-                    <List style={styles.listLogin}>
-                        <Field
-                            name="email"
-                            placeholder="E-MAIL"
-                            iconName="ios-person"
-                            component={ InputIconLabel }
-                        />
+                    <View style={[styles.subContainer, {justifyContent: 'flex-start'}]}>
 
-                        <Field
-                            name="password"
-                            placeholder="PASSWORD"
-                            iconName="ios-unlock"
-                            secureTextEntry={true}
-                            component={ InputIconLabel }
-                        />
+                        <List style={styles.listLogin}>
+                            <Field
+                                name="email"
+                                placeholder="E-MAIL"
+                                iconName="ios-person"
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                                component={ InputIconLabel }
+                            />
 
+                            <Field
+                                name="password"
+                                placeholder="PASSWORD"
+                                iconName="ios-unlock"
+                                secureTextEntry={true}
+                                component={ InputIconLabel }
+                            />
+
+                            <Button
+                                block
+                                style={{marginTop: 21}}
+                                primary={errorColor(this.props.responseSubmit, 'primary')}
+                                danger={errorColor(this.props.responseSubmit, 'danger')}
+                                onPress={this.props.handleSubmit(this.props.loginWithEmail)}
+                            >
+                                {errorMessage(this.props.responseSubmit, "Submit")}
+                            </Button>
+                        </List>
+
+                    </View>
+
+                    <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
                         <Button
                             block
+                            warning
+                            transparent
                             style={{marginTop: 21}}
-                            onPress={ props.handleSubmit((data) => {
-                                props.loginWithEmail(data)
-                            }) }
+                            textStyle={{color: '#007AFF'}}
+                            onPress={ Actions.register }
                         >
-                            Submit
+                            Not a member? Create an account
                         </Button>
-                    </List>
+                    </View>
 
                 </View>
 
-                <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
-                    <Button
-                        block
-                        warning
-                        transparent
-                        style={{marginTop: 21}}
-                        textStyle={{color: '#007AFF'}}
-                        onPress={ Actions.register }
-                    >
-                        Not a member? Create an account
-                    </Button>
-                </View>
+            </Container>
+        );
+    }
 
-            </View>
+    componentDidMount() {
+        // Recover session when reload
+        if (this.props.user) {
+            Actions.pop();
+        }
+    }
 
-        </Container>
-    );
-};
+}
 
-Login = reduxForm({
+const LoginForm = reduxForm({
     form: 'loginForm',
     // validate -> validation function name to define with (values) as parameters
 })(Login);
 
-export default Login;
+export default LoginForm;
