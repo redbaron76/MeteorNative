@@ -14,7 +14,7 @@ import LoginForm from '../scenes/Login';
 const mapStateToProps = (state) => {
     return {
         user: state.authState.user,
-        responseSubmit: state.validateState.error,
+        responseSubmit: state.routeState.error,
     };
 };
 

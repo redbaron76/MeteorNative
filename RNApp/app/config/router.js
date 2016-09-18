@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         openSideMenu,
-        closeSideMenu
+        closeSideMenu,
     }, dispatch);
 };
 

@@ -7,7 +7,8 @@ const scenes = Actions.create(
         <Scene key="home" title="Home page" component={Card.Home} initial={true}/>
         <Scene key="login" title="Login page" direction="vertical" component={Card.Login}/>
         <Scene key="register" title="Sign-up" component={Card.Register}/>
-        <Scene key="list" title="List" component={Card.List}/>
+        <Scene key="list" title="Device infos" component={Card.List}/>
+        <Scene key="text" title="Text scrolling" component={Card.Text}/>
     </Scene>
 );
 

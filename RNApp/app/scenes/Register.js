@@ -29,7 +29,7 @@ let Register = (props) => {
 
     return (
         <Container>
-            <Navbar role="header" title="Register" left={left} />
+            <Navbar title={props.title} left={left} />
 
             <View style={styles.content}>
 

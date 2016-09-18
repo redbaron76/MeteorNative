@@ -8,6 +8,7 @@
   "dependencies": {
     "google-libphonenumber": "^1.0.20",
     "native-base": "git://github.com/redbaron76/NativeBase/#master",
+    "navbar-native": "^1.2.0",
     "react": "~15.2.1",
     "react-native": "~0.31.0",
     "react-native-device-info": "^0.9.5",

@@ -1,6 +1,6 @@
 // Actions for user auth
 
-import Meteor, { Tracker, Accounts } from 'react-native-meteor';
+import Meteor, { Accounts, Trackr } from 'react-native-meteor';
 import { Actions, ActionConst } from 'react-native-router-flux';
 import { autofill } from 'redux-form';
 
@@ -23,7 +23,7 @@ export const errorLogin = (msg, changeColor = true) => {
 export const userData = (obj) => {
     return {
         type: USER_DATA,
-        data: obj,
+        data: obj || null,
     };
 };
 

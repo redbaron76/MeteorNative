@@ -13,126 +13,91 @@ import {
     Content,
     List,
     ListItem,
+    ListView,
 } from '../components';
 
 class ListPage extends Component {
 
     constructor(props) {
         super(props);
+
+        this.infos = this._getDeviceInfos();
+        console.log(this.infos);
+    }
+
+    _getDeviceInfos() {
+        const infos = [];
+        infos.push({label:"Device Manufacturer", data: DeviceInfo.getManufacturer()});
+        infos.push({label:"Device Brand", data: DeviceInfo.getBrand()});
+        infos.push({label:"Device Model", data: DeviceInfo.getModel()});
+        infos.push({label:"Device ID", data: DeviceInfo.getDeviceId()});
+        infos.push({label:"System Name", data: DeviceInfo.getSystemName()});
+        infos.push({label:"System Version", data: DeviceInfo.getSystemVersion()});
+        infos.push({label:"Bundle ID", data: DeviceInfo.getBundleId()});
+        infos.push({label:"Build Number", data: DeviceInfo.getBuildNumber()});
+        infos.push({label:"App Version", data: DeviceInfo.getVersion()});
+        infos.push({label:"App Version Readable", data: DeviceInfo.getReadableVersion()});
+        infos.push({label:"Device name", data: DeviceInfo.getDeviceName()});
+        infos.push({label:"User Agent", data: DeviceInfo.getUserAgent()});
+        infos.push({label:"Device Locale", data: DeviceInfo.getDeviceLocale()});
+        infos.push({label:"Device Country", data: DeviceInfo.getDeviceCountry()});
+        infos.push({label:"Unique ID", data: DeviceInfo.getUniqueID()});
+        infos.push({label:"App Instance ID", data: DeviceInfo.getInstanceID()});
+
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        return ds.cloneWithRows(infos);
+    }
+
+    renderListRow(rowData, sectionID) {
+        const style= {
+            row: {
+                flexDirection:'row',
+                alignItems: 'center',
+                justifyContent:'space-between',
+                paddingTop: 18,
+                paddingBottom: 18,
+                borderBottomWidth: 1,
+                borderBottomColor: '#efeff4'
+            },
+            text: {
+                flex: 1,
+                fontSize: 15
+            },
+            right: {
+                flex: 1,
+                color:'#0076FF',
+                textAlign: 'right'
+            }
+        };
+
+        return (
+            <View key={sectionID} style={style.row}>
+                <Text style={[style.text]}>{rowData.label}</Text>
+                <Text style={[style.text, style.right]}>{rowData.data}</Text>
+            </View>
+        );
     }
 
     render() {
 
         const left = {
-            role: "back"
+            role: "back",
+            onPress: Actions.pop
         };
 
         const right = {
-            role: "sidebar",
+            role: "menu",
+            onPress: this.props.openSideMenu
         };
 
         return (
             <ContainerWithMenu>
-                <Navbar role="header" title="Device infos" left={left} right={right} />
+                <Navbar title={this.props.title} left={left} right={right} user={this.props.user} />
                 <View style={styles.content}>
-                    <Content>
-                        <List>
-                            <ListItem>
-                                <Text>Device Manufacturer</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getManufacturer()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Device Brand</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getBrand()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Device Model</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getModel()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Device ID</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getDeviceId()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>System Name</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getSystemName()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>System Version</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getSystemVersion()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Bundle ID</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getBundleId()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Build Number</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getBuildNumber()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>App Version</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getVersion()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>App Version (Readable)</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getReadableVersion()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Device Name</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getDeviceName()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>User Agent</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getUserAgent()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Device Locale</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getDeviceLocale()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Device Country</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getDeviceCountry()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>Unique ID</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getUniqueID()}</Text>
-                            </ListItem>
-                        </List>
-                        <List>
-                            <ListItem>
-                                <Text>App Instance ID</Text>
-                                <Text note style={styles.note}>{DeviceInfo.getInstanceID()}</Text>
-                            </ListItem>
-                        </List>
-                    </Content>
+                    <ListView
+                        dataSource={this.infos}
+                        renderRow={this.renderListRow}
+                    />
                 </View>
             </ContainerWithMenu>
         );

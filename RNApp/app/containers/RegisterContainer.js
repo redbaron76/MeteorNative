@@ -13,7 +13,7 @@ import RegisterForm from '../scenes/Register';
 // authState attr comes from combineReducers
 const mapStateToProps = (state) => {
     return {
-        responseSubmit: state.validateState.error,
+        responseSubmit: state.routeState.error,
     };
 };
 

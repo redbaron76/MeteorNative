@@ -37,6 +37,22 @@ class Home extends Component {
         }
     }
 
+    _renderLinkToText() {
+        if (this.props.user) {
+            return (
+                <Button
+                    block
+                    transparent
+                    style={undefined}
+                    textStyle={{color: '#007AFF'}}
+                    onPress={ Actions.text }
+                >
+                    Show long text scrolling
+                </Button>
+            );
+        }
+    }
+
     _renderLinkToList() {
         if (this.props.user) {
             return (
@@ -54,27 +70,30 @@ class Home extends Component {
     }
 
     render() {
-        // console.log('Home', this.props);
+
+        // console.log('Home user', this.props.user);
 
         const left = {
             role: "login",
-            onPress: Actions.login
+            onPress: (this.props.user) ? this.props.logout : Actions.login
         };
 
         const right = {
-            role: "sidebar",
+            role: "menu",
+            onPress: this.props.openSideMenu
         };
 
         return (
             <ContainerWithMenu>
-                <Navbar role="header" title="Home Page" left={left} right={right} />
+                <Navbar title={this.props.title} left={left} right={right} user={this.props.user} />
                 <View style={styles.content}>
                     <View style={styles.subContainer}>
                         {this._renderHelloMessage()}
                     </View>
+                    {this._renderLinkToText()}
                     {this._renderLinkToList()}
                     <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
-                        <Text style={[styles.text, {backgroundColor: '#b3b3b3', padding: 5}]}>This is a boilerplate that aims to integrate together Meteor as backend, React Native as frontend and Redux for managing state.</Text>
+                        <Text style={[styles.text, {backgroundColor: '#b3b3b3', padding: 5}]}>This is a boilerplate that aims to integrate together Meteor as backend, React Native as frontend and Redux as state manager.</Text>
                         {this._renderDummyLogin()}
                     </View>
                 </View>

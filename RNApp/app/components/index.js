@@ -2,7 +2,9 @@
 
 import {
     View,
-    // Text,
+    Text,
+    ScrollView,
+    ListView,
     StyleSheet,
 } from 'react-native';
 
@@ -11,7 +13,7 @@ import {
     Button,
     Card,
     CardItem,
-    Container,
+    // Container,
     Content,
     Footer,
     Header,
@@ -20,12 +22,15 @@ import {
     Input,
     List,
     ListItem,
-    ProgressBar,
     Spinner,
-    Text,
     Thumbnail,
     Title,
 } from 'native-base';
+
+import {
+    Container,
+    Navbar,
+} from 'navbar-native';
 
 import {
     Field
@@ -35,7 +40,7 @@ import AppManager from './AppManager';
 import ContainerWithMenu from './ContainerWithMenu';
 import { InputInlineLabel, InputIconLabel } from './FormFields';
 import SideMenuContent from './SideMenuContent';
-import Navbar from './Navbar';
+import LoadingScreen from './LoadingScreen';
 
 // Export all components from a single location
 
@@ -44,7 +49,9 @@ export {
     // react-native
 
     View,
-    // Text,
+    Text,
+    ScrollView,
+    ListView,
     StyleSheet,
 
     // native-base component
@@ -53,7 +60,7 @@ export {
     Button,
     Card,
     CardItem,
-    Container,
+    // Container,
     Content,
     Footer,
     Header,
@@ -62,11 +69,15 @@ export {
     Input,
     List,
     ListItem,
-    ProgressBar,
     Spinner,
     Text,
     Thumbnail,
     Title,
+
+    // navbar-native components
+
+    Container,
+    Navbar,
 
     // redux-form component
 
@@ -79,5 +90,5 @@ export {
     InputIconLabel,
     InputInlineLabel,
     SideMenuContent,
-    Navbar,
+    LoadingScreen,
 };

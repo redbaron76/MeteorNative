@@ -16,9 +16,14 @@ Meteor.connect(settings.METEOR_URL);
 // in index.ios e index.android as App
 export default createContainer(() => {
 
+    const connected = Meteor.status().connected;
+    const currentUser = Meteor.subscribe('currentUser', Meteor.userId());
+    const currentUserStatus = (connected) ? currentUser.ready() : false;
+
     return  {
         user: Meteor.user(),
-        connected: Meteor.status().connected,
+        connected: connected,
+        currentUserStatus: currentUserStatus,
     };
 
 }, AppManager);

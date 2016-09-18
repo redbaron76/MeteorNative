@@ -23,19 +23,19 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
-        //console.log('Login', props);
+
     }
 
     render() {
 
         const right = {
             role: 'close',
-            // onPress: Actions.pop
+            onPress: Actions.pop
         };
 
         return (
             <Container>
-                <Navbar role="header" title="Login" right={right} />
+                <Navbar title={this.props.title} right={right} />
 
                 <View style={styles.content}>
 
