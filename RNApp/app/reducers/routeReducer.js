@@ -11,7 +11,7 @@ export default function routeReducer(state = initialState, action = {}) {
     // get action data
     const { scene, type, data } = action;
 
-    // console.log('type', type);
+    console.log('type', type);
 
     switch (type) {
         // focus action is dispatched when a new screen comes into focus
