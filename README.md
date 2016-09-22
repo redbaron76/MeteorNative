@@ -1,6 +1,6 @@
 # a React-Native and Meteor boilerplate
 
-![react-native-intro](https://cloud.githubusercontent.com/assets/1061849/18615649/5f3c930a-7dac-11e6-9d52-eef4b56b8d21.gif)
+![react-native-intro](https://cloud.githubusercontent.com/assets/1061849/18746036/5db45830-80c5-11e6-8222-1813798c8cd4.gif)
 
 ### INTRO
 This project aims to put together the following technologies:
