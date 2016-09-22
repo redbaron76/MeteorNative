@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import DeviceInfo from 'react-native-device-info';
-import styles from '../styles/PageStyle';
+import * as s from '../styles/styles';
 
 import {
     View,
     Text,
-    Icon,
-    Badge,
     ContainerWithMenu,
     Navbar,
-    Content,
-    List,
-    ListItem,
     ListView,
 } from '../components';
 
@@ -22,7 +17,6 @@ class ListPage extends Component {
         super(props);
 
         this.infos = this._getDeviceInfos();
-        console.log(this.infos);
     }
 
     _getDeviceInfos() {
@@ -50,22 +44,22 @@ class ListPage extends Component {
 
     renderListRow(rowData, sectionID) {
         const style= {
-            row: {
-                flexDirection:'row',
-                alignItems: 'center',
-                justifyContent:'space-between',
-                paddingTop: 18,
-                paddingBottom: 18,
-                borderBottomWidth: 1,
-                borderBottomColor: '#efeff4'
-            },
+            row: s.merge({
+                    flexDirection: 'row',
+                    alignItems: s.position.center,
+                    justifyContent: s.position.spaceBetween,
+                    borderBottomWidth: 1,
+                    borderBottomColor: s.color.border
+                },
+                s.styles.withPadding(s.unit.space, s.unit.spaceMin)
+            ),
             text: {
                 flex: 1,
-                fontSize: 15
+                fontSize: s.size.small
             },
             right: {
                 flex: 1,
-                color:'#0076FF',
+                color: s.color.link,
                 textAlign: 'right'
             }
         };
@@ -93,7 +87,7 @@ class ListPage extends Component {
         return (
             <ContainerWithMenu>
                 <Navbar title={this.props.title} left={left} right={right} user={this.props.user} />
-                <View style={styles.content}>
+                <View style={s.styles.innerContainer}>
                     <ListView
                         dataSource={this.infos}
                         renderRow={this.renderListRow}

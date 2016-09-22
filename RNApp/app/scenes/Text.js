@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import styles from '../styles/PageStyle';
-
+import * as s from '../styles/styles';
 import {
-    View,
-    Text,
-    Icon,
-    Badge,
     ContainerWithMenu,
     Navbar,
-    Content,
-    List,
-    ListItem,
     ScrollView,
+    Text,
+    View,
 } from '../components';
 
 class TextPage extends Component {
@@ -38,8 +32,12 @@ class TextPage extends Component {
         return (
             <ContainerWithMenu>
                 <Navbar title={this.props.title} left={left} right={right} user={this.props.user} />
-                <View style={styles.content}>
-                    <ScrollView>
+                <View style={s.styles.innerContainer}>
+                    <ScrollView
+                        contentContainerStyle={
+                            s.styles.withPadding(0, s.unit.spaceMin)
+                        }
+                    >
                         <Text>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, fugiat iusto libero officiis quas quis quos saepe! Ab eos error facere in, odit provident, rem rerum saepe similique ullam voluptatem?
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam cumque delectus doloremque eaque eligendi facilis hic ipsa ipsum labore non obcaecati perferendis reiciendis rem, voluptatibus? Eveniet fugit iusto totam?

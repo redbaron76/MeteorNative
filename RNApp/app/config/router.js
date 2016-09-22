@@ -9,6 +9,7 @@ import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
 // authState attr comes from combineReducers
 const mapStateToProps = (state) => {
     return {
+        loading: state.routeState.loading,
         user: state.authState.user,
     };
 };

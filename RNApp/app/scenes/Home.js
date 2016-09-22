@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
 import { Actions } from 'react-native-router-flux';
-import styles from '../styles/PageStyle';
-
+import * as s from '../styles/styles';
 import {
     View,
     Text,
@@ -14,23 +12,17 @@ import {
 // Verbose way to create Presentational components
 class Home extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     _renderHelloMessage() {
         const message = (this.props.user) ? ", " + this.props.user.username : null;
         return (
-            <Text style={styles.heading}>Welcome to MeteorNative{message}!</Text>
+            <Text style={s.styles.h1}>Welcome to MeteorNative{message}!</Text>
         );
     }
 
     _renderDummyLogin() {
         if (!this.props.user) {
             return (
-                <Text
-                    style={[styles.text, {marginTop: 10, padding: 4, backgroundColor: '#000000'}]}
-                >
+                <Text style={s.styles.blackBox}>
                     Login with: test / test
                 </Text>
             );
@@ -43,11 +35,25 @@ class Home extends Component {
                 <Button
                     block
                     transparent
-                    style={undefined}
-                    textStyle={{color: '#007AFF'}}
+                    textStyle={{color: s.color.link}}
                     onPress={ Actions.text }
                 >
-                    Show long text scrolling
+                    Long text scrolling
+                </Button>
+            );
+        }
+    }
+
+    _renderLinkToFonts() {
+        if (this.props.user) {
+            return (
+                <Button
+                    block
+                    transparent
+                    textStyle={{color: s.color.link}}
+                    onPress={ Actions.font }
+                >
+                    All available fonts
                 </Button>
             );
         }
@@ -59,19 +65,16 @@ class Home extends Component {
                 <Button
                     block
                     transparent
-                    style={undefined}
-                    textStyle={{color: '#007AFF'}}
+                    textStyle={{color: s.color.link}}
                     onPress={ Actions.list }
                 >
-                    Show device infos
+                    Device infos
                 </Button>
             );
         }
     }
 
     render() {
-
-        // console.log('Home user', this.props.user);
 
         const left = {
             role: "login",
@@ -86,14 +89,17 @@ class Home extends Component {
         return (
             <ContainerWithMenu>
                 <Navbar title={this.props.title} left={left} right={right} user={this.props.user} />
-                <View style={styles.content}>
-                    <View style={styles.subContainer}>
+                <View style={s.styles.innerContainer}>
+                    <View style={s.styles.sectionContainer}>
                         {this._renderHelloMessage()}
                     </View>
-                    {this._renderLinkToText()}
-                    {this._renderLinkToList()}
-                    <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
-                        <Text style={[styles.text, {backgroundColor: '#b3b3b3', padding: 5}]}>This is a boilerplate that aims to integrate together Meteor as backend, React Native as frontend and Redux as state manager.</Text>
+                    <View style={s.styles.sectionContainer}>
+                        {this._renderLinkToText()}
+                        {this._renderLinkToFonts()}
+                        {this._renderLinkToList()}
+                    </View>
+                    <View style={[s.styles.sectionContainer, s.styles.withPadding(5), s.styles.onBottom]}>
+                        <Text style={s.styles.jumboTron}>This is a boilerplate that aims to integrate together Meteor as backend, React Native as frontend and Redux as state manager.</Text>
                         {this._renderDummyLogin()}
                     </View>
                 </View>

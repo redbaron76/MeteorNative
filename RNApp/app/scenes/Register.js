@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-
 import { reduxForm } from 'redux-form';
 import { Actions } from 'react-native-router-flux';
-
-import { errorMessage, errorColor } from '../utils';
-import styles from '../styles/PageStyle';
+import { Form, Field } from '../components/Form';
+import * as s from '../styles/styles';
 
 import {
     Container,
-    List,
     Button,
-    Field,
     InputInlineLabel,
     Navbar,
     View,
@@ -28,19 +24,14 @@ let Register = (props) => {
     };
 
     return (
-        <Container>
+        <Container loading={props.loading}>
             <Navbar title={props.title} left={left} />
-
-            <View style={styles.content}>
-
-                <View style={styles.subContainer}>
-                    <Text style={styles.heading}>Sign-up now!</Text>
+            <View style={s.styles.innerContainer}>
+                <View style={s.styles.sectionContainer}>
+                    <Text style={s.styles.h1}>Sign-up now!</Text>
                 </View>
-
-                <View style={[styles.subContainer, {flex: 2, justifyContent: 'flex-start'}]}>
-
-                    <List style={styles.listLogin}>
-
+                <View style={[s.styles.sectionContainer, s.styles.onTop, { flex: 2 }]}>
+                    <Form errorMessage={props.responseSubmit}>
                         <Field
                             inlineLabel
                             name="username"
@@ -48,7 +39,6 @@ let Register = (props) => {
                             label="USERNAME"
                             component={ InputInlineLabel }
                         />
-
                         <Field
                             inlineLabel
                             name="email"
@@ -59,7 +49,6 @@ let Register = (props) => {
                             autoCorrect={false}
                             component={ InputInlineLabel }
                         />
-
                         <Field
                             inlineLabel
                             name="password"
@@ -68,7 +57,6 @@ let Register = (props) => {
                             secureTextEntry={true}
                             component={ InputInlineLabel }
                         />
-
                         <Field
                             inlineLabel
                             name="checkPassword"
@@ -77,22 +65,15 @@ let Register = (props) => {
                             secureTextEntry={true}
                             component={ InputInlineLabel }
                         />
-
                         <Button
                             block
-                            style={{marginTop: 21}}
-                            primary={errorColor(props.responseSubmit, 'primary')}
-                            danger={errorColor(props.responseSubmit, 'danger')}
                             onPress={props.handleSubmit(props.registerByEmail)}
                         >
-                            {errorMessage(props.responseSubmit, "Register")}
+                            Register
                         </Button>
-                    </List>
-
+                    </Form>
                 </View>
-
             </View>
-
         </Container>
     );
 };

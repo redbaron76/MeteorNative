@@ -12,14 +12,15 @@ import SideMenu from '../containers/SideMenuContainer';
 
 class ContainerWithMenu extends Component {
 
-    constructor(props) {
-        super(props);
-        // console.log('ContainerWithMenu', props);
-    }
-
     _renderContainer() {
         return (
-            <Container>
+            <Container
+                data={this.props.data}
+                row={this.props.row}
+                loading={this.props.loading}
+                type={this.props.type || 'scroll'}
+                style={this.props.style}
+            >
                 {this.props.children}
             </Container>
         );
@@ -32,7 +33,10 @@ class ContainerWithMenu extends Component {
             // Wraps Container by SideMenu when logged
             case (!!this.props.user):
                 return (
-                    <SideMenu onOpen={this.props.openSideMenu} onClose={this.props.closeSideMenu}>
+                    <SideMenu
+                        onOpen={this.props.openSideMenu}
+                        onClose={this.props.closeSideMenu}
+                    >
                         {this._renderContainer()}
                     </SideMenu>
                 );
@@ -47,6 +51,7 @@ class ContainerWithMenu extends Component {
 // pass state attributes as props to Component
 const mapStateToProps = (state, props) => {
     return {
+        loading: state.routeState.loading,
         user: state.authState.user,
     };
 };

@@ -5,25 +5,32 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 import { autofill } from 'redux-form';
 
 import {
+    LOADING,
     USER_DATA,
     ERROR_LOGIN,
 } from '../constants/actionTypes';
 
 
-export const errorLogin = (msg, changeColor = true) => {
+export const errorLogin = (msg) => {
     return {
         type: ERROR_LOGIN,
-        data: {
-            msg: msg,
-            color: (msg && changeColor) ? 'danger' : 'primary'
-        }
+        data: msg
     };
 };
 
-export const userData = (obj) => {
+export const loading = (msg = null) => {
+    return {
+        type: LOADING,
+        data: (!!msg) ? {
+            message: msg
+        } : undefined
+    }
+};
+
+export const userData = (obj = null) => {
     return {
         type: USER_DATA,
-        data: obj || null,
+        data: obj,
     };
 };
 
@@ -46,7 +53,7 @@ export function registerByEmail(formData) {
                 dispatch(errorLogin('Check password confirmation!'));
                 return;
             default:
-                dispatch(errorLogin('Creating account...'));
+                dispatch(loading('Creating account...'));
                 Accounts.createUser({
                     username,
                     email,
@@ -58,7 +65,7 @@ export function registerByEmail(formData) {
                     } else {
                         // pre-populate email field in loginForm
                         dispatch(autofill('loginForm', 'email', email));
-                        dispatch(errorLogin(undefined));
+                        dispatch(loading());
                         Actions.pop();
                     }
                 });
@@ -71,12 +78,13 @@ export function loginWithEmail(formData) {
     return dispatch => {
         const { email, password } = formData;
         if (email && password) {
-            dispatch(errorLogin('Loading...', false));
+            dispatch(loading('Logging in...'));
             Meteor.loginWithPassword(email, password, (error) => {
                 if (error) {
+                    dispatch(loading());
                     dispatch(errorLogin(error.reason));
                 } else {
-                    dispatch(errorLogin(undefined));
+                    dispatch(loading());
                     dispatch(userData(Meteor.user()));
                     Actions.home({type: ActionConst.REPLACE});
                 }
@@ -99,12 +107,14 @@ export function loginWithFacebook() {
 // Action - logout user from Meteor app
 export function logout() {
     return dispatch => {
+        dispatch(loading('Logging out...'));
         Meteor.logout(error => {
             if (error) {
                 console.log('Error logout:', error);
             } else {
                 // Dispatch new user status after logout
-                dispatch(userData(null))
+                dispatch(userData());
+                dispatch(loading());
             }
         });
     };

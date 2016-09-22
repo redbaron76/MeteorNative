@@ -7,14 +7,22 @@ import { View, Text } from './';
 import { loginWithFacebook, logout } from '../actions/authActions';
 import { openSideMenu, closeSideMenu } from '../actions/sideMenuActions';
 
-import styles from '../styles/SideMenuStyle';
+import * as s from '../styles/styles';
 
 // Compact way to render Presentational Components (dumb)
 // Dumb Components just get props and they know nothing about state
 const SideMenuContent = (props) => {
     // console.log('SideMenuContent:', props);
-    return (!!props.user) ? <View style={styles.container}>
-        <Text>SideMenu Content!</Text>
+    return (!!props.user) ? <View style={s.styles.innerContainer}>
+        <View style={[
+            s.styles.sectionContainer,
+            s.styles.withPadding(s.unit.spaceMax, s.unit.space),
+            s.styles.onTop, {
+                backgroundColor: s.color.black,
+            }
+        ]}>
+            <Text style={{color: s.color.white}}>SideMenu Content!</Text>
+        </View>
     </View> : null;
 };
 

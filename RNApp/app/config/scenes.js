@@ -9,6 +9,7 @@ const scenes = Actions.create(
         <Scene key="register" title="Sign-up" component={Card.Register}/>
         <Scene key="list" title="Device infos" component={Card.List}/>
         <Scene key="text" title="Text scrolling" component={Card.Text}/>
+        <Scene key="font" title="Available fonts" component={Card.Font}/>
     </Scene>
 );
 

@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-
 import { reduxForm } from 'redux-form';
 import { Actions } from 'react-native-router-flux';
-
-import { errorMessage, errorColor } from '../utils';
-import styles from '../styles/PageStyle';
-
+import { Form, Field } from '../components/Form';
+import * as s from '../styles/styles';
 import {
     Container,
-    List,
     Button,
-    Field,
     InputIconLabel,
     Navbar,
     View,
@@ -21,11 +16,6 @@ import {
 // Dumb Components just get props and they know nothing about state
 class Login extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
 
         const right = {
@@ -34,18 +24,14 @@ class Login extends Component {
         };
 
         return (
-            <Container>
+            <Container loading={this.props.loading}>
                 <Navbar title={this.props.title} right={right} />
-
-                <View style={styles.content}>
-
-                    <View style={styles.subContainer}>
-                        <Text style={styles.heading}>Login now!</Text>
+                <View style={s.styles.innerContainer}>
+                    <View style={s.styles.sectionContainer}>
+                        <Text style={s.styles.h1}>Login now!</Text>
                     </View>
-
-                    <View style={[styles.subContainer, {justifyContent: 'flex-start'}]}>
-
-                        <List style={styles.listLogin}>
+                    <View style={[s.styles.sectionContainer, s.styles.onTop]}>
+                        <Form errorMessage={this.props.responseSubmit}>
                             <Field
                                 name="email"
                                 placeholder="E-MAIL"
@@ -55,7 +41,6 @@ class Login extends Component {
                                 autoCorrect={false}
                                 component={ InputIconLabel }
                             />
-
                             <Field
                                 name="password"
                                 placeholder="PASSWORD"
@@ -63,34 +48,22 @@ class Login extends Component {
                                 secureTextEntry={true}
                                 component={ InputIconLabel }
                             />
-
-                            <Button
-                                block
-                                style={{marginTop: 21}}
-                                primary={errorColor(this.props.responseSubmit, 'primary')}
-                                danger={errorColor(this.props.responseSubmit, 'danger')}
-                                onPress={this.props.handleSubmit(this.props.loginWithEmail)}
-                            >
-                                {errorMessage(this.props.responseSubmit, "Submit")}
+                            <Button block onPress={this.props.handleSubmit(this.props.loginWithEmail)}>
+                                Submit
                             </Button>
-                        </List>
-
+                        </Form>
                     </View>
-
-                    <View style={[styles.subContainer, {justifyContent: 'flex-end'}]}>
+                    <View style={[s.styles.sectionContainer, s.styles.onBottom]}>
                         <Button
                             block
                             transparent
-                            style={{marginTop: 21}}
-                            textStyle={{color: '#007AFF'}}
+                            textStyle={{color: s.color.link}}
                             onPress={ Actions.register }
                         >
                             Not a member? Create an account
                         </Button>
                     </View>
-
                 </View>
-
             </Container>
         );
     }

@@ -1,11 +1,8 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-// import actions from authReducer to pass as props to component
-import { loginWithEmail } from '../actions/authActions';
+import { Actions } from 'react-native-router-flux';
 
 // import dumb component to be wrapped by container
-import LoginForm from '../scenes/Login';
+import FontPage from '../scenes/Font';
 
 // Compact way to create Container -> connect creates container by default
 
@@ -14,17 +11,15 @@ import LoginForm from '../scenes/Login';
 const mapStateToProps = (state) => {
     return {
         user: state.authState.user,
-        loading: state.routeState.loading,
-        responseSubmit: state.routeState.error,
     };
 };
 
 // pass Event handlers to List dumb component
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        loginWithEmail
-    }, dispatch);
+    return {
+
+    };
 };
 
 // this wraps the dumb component (Home is presentational)
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FontPage);
