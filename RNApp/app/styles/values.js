@@ -6,7 +6,7 @@ export function merge(obj, ...add) {
 }
 
 export const color = {
-    backgroundColor: iOS('#f7f7f7', '#c0c0c0'),
+    backgroundColor: iOS('#ffffff', '#c0c0c0'),
     black: '#000000',
     border: iOS('#efeff4', '#c0c0c0'),
     gray: iOS('#c7c7c7', '#c0c0c0'),

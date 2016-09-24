@@ -88,7 +88,7 @@ class Home extends Component {
 
         return (
             <ContainerWithMenu>
-                <Navbar title={this.props.title} left={left} right={right} user={this.props.user} />
+                <Navbar title={this.props.title} left={left} right={right} user={this.props.user} theme="dark" />
                 <View style={s.styles.innerContainer}>
                     <View style={s.styles.sectionContainer}>
                         {this._renderHelloMessage()}
